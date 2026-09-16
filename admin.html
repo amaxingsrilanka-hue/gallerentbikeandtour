@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Galle Rent Bike and Tours</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#ff8a00;--orange2:#ff6a00;--black:#0d0d0d;--ink:#182027;
+    --muted:#6b7684;--line:#ecebe6;--green:#19c866;--cream:#fff6ea;--sand:#fffaf2;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:#fafafa;color:var(--ink);margin:0;}
+  h1,h2{font-family:'Playfair Display',serif;font-weight:800;color:var(--ink);}
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 24px 80px;}
+
+  /* login gate */
+  #loginGate{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--black);}
+  .login-box{background:#fff;padding:40px 36px;border-radius:18px;width:100%;max-width:360px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4);}
+  .login-box h1{font-size:1.6rem;margin-bottom:6px;}
+  .login-box p{color:var(--muted);font-size:.88rem;margin-bottom:22px;}
+  .login-box input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;margin-bottom:14px;font-family:'DM Sans',sans-serif;}
+  .login-box button{width:100%;padding:13px;border:0;border-radius:10px;background:var(--orange);color:#111;font-weight:900;font-size:1rem;cursor:pointer;}
+  .login-box button:hover{background:var(--orange2);color:#fff;}
+  .login-err{color:#c0392b;font-size:.82rem;margin-top:10px;min-height:16px;}
+  .login-note{margin-top:18px;font-size:.76rem;background:#fff3f0;border:1px solid #ffd9cc;padding:10px 12px;border-radius:8px;color:#8a4433;text-align:left;}
+
+  /* admin UI */
+  #adminApp{display:none;}
+  header.topbar{background:var(--black);color:#fff;padding:18px 0;}
+  header.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:0 24px;max-width:1100px;}
+  header.topbar h1{color:#fff;font-size:1.25rem;font-family:'Playfair Display',serif;}
+  .topbar a{color:var(--orange);font-weight:800;font-size:.86rem;text-decoration:none;}
+  .logout{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 16px;border-radius:100px;font-size:.82rem;font-weight:800;cursor:pointer;}
+
+  .tabbar{display:flex;gap:10px;margin:28px 0 22px;border-bottom:1px solid var(--line);}
+  .tabbtn{background:none;border:0;padding:12px 4px;margin-right:22px;font-weight:800;font-size:.94rem;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;}
+  .tabbtn.active{color:var(--ink);border-bottom-color:var(--orange);}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block;}
+
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0 20px;align-items:center;}
+  .btn{padding:11px 18px;border-radius:10px;border:0;font-weight:800;font-size:.86rem;cursor:pointer;font-family:'DM Sans',sans-serif;}
+  .btn-orange{background:var(--orange);color:#111;}
+  .btn-orange:hover{background:var(--orange2);color:#fff;}
+  .btn-outline{background:#fff;border:1px solid var(--line);color:var(--ink);}
+  .btn-outline:hover{background:#f5f5f5;}
+  .btn-danger{background:#fff;border:1px solid #f3c9c0;color:#c0392b;}
+  .btn-danger:hover{background:#fff0ed;}
+  .save-banner{display:none;background:#e6f6ec;border:1px solid #b9e6c9;color:#1f7a44;padding:12px 16px;border-radius:10px;font-size:.86rem;font-weight:700;margin-bottom:18px;}
+
+  .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;}
+  .item-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .item-card .thumb{aspect-ratio:4/3;background:#eee;overflow:hidden;}
+  .item-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .item-card .fields{padding:14px;}
+  .item-card label{font-size:.7rem;font-weight:800;color:var(--muted);display:block;margin:9px 0 3px;}
+  .item-card label:first-of-type{margin-top:0;}
+  .item-card input, .item-card select, .item-card textarea{
+    width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:8px;font-size:.84rem;font-family:'DM Sans',sans-serif;
+  }
+  .item-card textarea{resize:vertical;min-height:50px;}
+  .item-card .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .item-card .card-actions{display:flex;gap:8px;margin-top:12px;}
+  .avail-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid #eee;}
+  .avail-row span{font-size:.8rem;font-weight:800;color:var(--ink-soft);}
+  .switch{position:relative;display:inline-block;width:42px;height:24px;flex-shrink:0;}
+  .switch input{opacity:0;width:0;height:0;}
+  .switch .slider{position:absolute;cursor:pointer;inset:0;background:#dfe3e8;border-radius:100px;transition:.2s;}
+  .switch .slider:before{content:"";position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3);}
+  .switch input:checked + .slider{background:var(--green);}
+  .switch input:checked + .slider:before{transform:translateX(18px);}
+  .item-card .card-actions button{flex:1;padding:9px;font-size:.76rem;}
+  .file-btn{display:block;background:var(--sand);border:1px dashed #cbb98a;border-radius:8px;padding:8px 10px;font-size:.76rem;font-weight:700;color:var(--muted);cursor:pointer;text-align:center;}
+
+  .add-card{border:2px dashed #d9d9d9;border-radius:14px;display:flex;align-items:center;justify-content:center;min-height:260px;background:transparent;cursor:pointer;color:var(--muted);font-weight:800;flex-direction:column;gap:8px;font-size:.88rem;}
+  .add-card:hover{background:#fff;}
+  .add-card .plus{font-size:2.2rem;color:var(--orange);}
+
+  .section-block{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:26px;}
+  .section-block h2{font-size:1.15rem;margin-bottom:12px;}
+  .backup-row{display:flex;gap:10px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<div id="loginGate">
+  <div class="login-box">
+    <h1>Admin Login</h1>
+    <p>Galle Rent Bike and Tours — manage your site</p>
+    <input type="password" id="pwInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')tryLogin()">
+    <button onclick="tryLogin()">Log in</button>
+    <div class="login-err" id="loginErr"></div>
+    <div class="login-note">Staff access only. This is a simple browser-side lock, not real security — anyone who views this page's source code can read the password. Do not store anything sensitive here.</div>
+  </div>
+</div>
+
+<div id="adminApp">
+  <header class="topbar">
+    <div class="wrap">
+      <h1>Galle Rent Bike &amp; Tours — Admin</h1>
+      <div style="display:flex;gap:14px;align-items:center;">
+        <a href="index.html" target="_blank">View live site ↗</a>
+        <button class="logout" onclick="logout()">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="save-banner" id="saveBanner">✓ Saved — refresh index.html to see your changes.</div>
+
+    <div class="tabbar">
+      <button class="tabbtn active" data-tab="bikes" onclick="switchTab('bikes')">🏍️ Bikes &amp; Vehicles</button>
+      <button class="tabbtn" data-tab="tours" onclick="switchTab('tours')">🗺️ Round Tours</button>
+    </div>
+
+    <!-- BIKES TAB -->
+    <div class="tabpanel active" id="panel-bikes">
+      <div class="section-block">
+        <h2>Backup &amp; transfer</h2>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:14px;">Changes are saved only in this browser. Export to back up, or move to another device.</p>
+        <div class="backup-row">
+          <button class="btn btn-outline" onclick="exportData('bikes')">⬇ Export vehicles (.json)</button>
+          <button class="btn btn-outline" onclick="document.getElementById('importFileBikes').click()">⬆ Import vehicles (.json)</button>
+          <input type="file" id="importFileBikes" accept="application/json" style="display:none" onchange="importData(event,'bikes')">
+          <button class="btn btn-danger" onclick="resetDefaults('bikes')">Reset to original fleet</button>
+        </div>
+      </div>
+      <div class="toolbar"><h2 style="margin:0;flex:1;font-size:1.1rem;">Your Fleet (<span id="bikeCount">0</span> vehicles)</h2></div>
+      <div class="item-grid" id="bikeGrid"></div>
+    </div>
+
+    <!-- TOURS TAB -->
+    <div class="tabpanel" id="panel-tours">
+      <div class="section-block">
+        <h2>Backup &amp; transfer</h2>
+        <p style="color:var(--muted);font-size:.84rem;margin-bottom:14px;">Changes are saved only in this browser. Export to back up, or move to another device.</p>
+        <div class="backup-row">
+          <button class="btn btn-outline" onclick="exportData('tours')">⬇ Export tours (.json)</button>
+          <button class="btn btn-outline" onclick="document.getElementById('importFileTours').click()">⬆ Import tours (.json)</button>
+          <input type="file" id="importFileTours" accept="application/json" style="display:none" onchange="importData(event,'tours')">
+          <button class="btn btn-danger" onclick="resetDefaults('tours')">Reset to original 6 tours</button>
+        </div>
+      </div>
+      <div class="toolbar"><h2 style="margin:0;flex:1;font-size:1.1rem;">Round Tours (<span id="tourCount">0</span> packages)</h2></div>
+      <div class="item-grid" id="tourGrid"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PASSWORD = "galle2026";
+const BIKE_KEY = "galleFleetData";
+const TOUR_KEY = "galleToursData";
+
+const FLEET_DEFAULT = [
+  {
+    "name": "Honda Dio 110",
+    "price": 5,
+    "priceprefix": "$",
+    "sub": "Honda",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_2.jpg"
+  },
+  {
+    "name": "Honda PCX 160",
+    "price": 12,
+    "priceprefix": "$",
+    "sub": "Honda",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_4.jpg"
+  },
+  {
+    "name": "Yamaha NMAX 155",
+    "price": 10,
+    "priceprefix": "$",
+    "sub": "Yamaha",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_2.jpg"
+  },
+  {
+    "name": "Suzuki Burgman",
+    "price": 8,
+    "priceprefix": "$",
+    "sub": "Suzuki",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_4.jpg"
+  },
+  {
+    "name": "Honda ADV 160",
+    "price": 12,
+    "priceprefix": "$",
+    "sub": "Honda",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_2.jpg"
+  },
+  {
+    "name": "Yamaha MT-15",
+    "price": 10,
+    "priceprefix": "$",
+    "sub": "Yamaha",
+    "type": "Bike",
+    "chips": [
+      "Manual",
+      "Petrol"
+    ],
+    "img": "images/fleet_1.jpg"
+  },
+  {
+    "name": "Honda Navi",
+    "price": 6,
+    "priceprefix": "$",
+    "sub": "Honda",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_4.jpg"
+  },
+  {
+    "name": "Honda Grazia",
+    "price": 6,
+    "priceprefix": "$",
+    "sub": "Honda",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_2.jpg"
+  },
+  {
+    "name": "TVS Ntorq 125",
+    "price": 6,
+    "priceprefix": "$",
+    "sub": "TVS",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_4.jpg"
+  },
+  {
+    "name": "Yamaha Aerox 155",
+    "price": 10,
+    "priceprefix": "$",
+    "sub": "Yamaha",
+    "type": "Bike",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "images/fleet_2.jpg"
+  },
+  {
+    "name": "Suzuki Intruder 150",
+    "price": 8,
+    "priceprefix": "$",
+    "sub": "Suzuki",
+    "type": "Bike",
+    "chips": [
+      "Manual",
+      "Petrol"
+    ],
+    "img": "images/fleet_1.jpg"
+  },
+  {
+    "name": "Tuk Tuk",
+    "price": 15,
+    "priceprefix": "$",
+    "sub": "Self-drive, with a short intro included.",
+    "type": "Tuk Tuk",
+    "chips": [
+      "Manual",
+      "Petrol"
+    ],
+    "img": "https://images.pexels.com/photos/30441419/pexels-photo-30441419.jpeg?cs=srgb&w=700"
+  },
+  {
+    "name": "Car",
+    "price": 35,
+    "priceprefix": "from $",
+    "sub": "Depends on model \u2014 ask us what's free.",
+    "type": "Car",
+    "chips": [
+      "Automatic",
+      "Petrol"
+    ],
+    "img": "https://images.pexels.com/photos/68624/pexels-photo-68624.jpeg?cs=srgb&w=700"
+  }
+];
+const TOURS_DEFAULT = [
+  {
+    "days": "7 Days",
+    "duration": "long",
+    "name": "07 Days Classic Sri Lanka",
+    "route": "Sigiriya \u2022 Kandy \u2022 Ella \u2022 Yala \u2022 Galle",
+    "desc": "A balanced first-trip route covering ancient heritage, hill country, wildlife and the south coast.",
+    "transport": "Car / Van + Driver",
+    "img": "https://images.pexels.com/photos/19808398/pexels-photo-19808398.jpeg?cs=srgb&w=700"
+  },
+  {
+    "days": "10 Days",
+    "duration": "long",
+    "name": "10 Days Grand Island Tour",
+    "route": "Sigiriya \u2022 Kandy \u2022 Nuwara Eliya \u2022 Ella \u2022 Yala \u2022 Mirissa \u2022 Galle",
+    "desc": "Our most complete classic circuit \u2014 culture, tea country, waterfalls, safari and beach time.",
+    "transport": "Car / Van + Driver-Guide",
+    "img": "https://images.pexels.com/photos/12147639/pexels-photo-12147639.jpeg?cs=srgb&w=700"
+  },
+  {
+    "days": "5 Days",
+    "duration": "short",
+    "name": "05 Days Hill Country & South",
+    "route": "Kandy \u2022 Nuwara Eliya \u2022 Ella \u2022 Yala \u2022 Galle",
+    "desc": "Mountains, tea plantations, scenic views, wildlife and the southern coast in one trip.",
+    "transport": "Car / Van + Driver",
+    "img": "https://images.pexels.com/photos/8692695/pexels-photo-8692695.jpeg?cs=srgb&w=700"
+  },
+  {
+    "days": "4 Days",
+    "duration": "short",
+    "name": "04 Days Cultural Triangle",
+    "route": "Dambulla \u2022 Sigiriya \u2022 Polonnaruwa \u2022 Kandy",
+    "desc": "A focused heritage tour through Sri Lanka's ancient cities and cultural highlights.",
+    "transport": "Car / Van + Guide",
+    "img": "https://images.pexels.com/photos/14041994/pexels-photo-14041994.jpeg?cs=srgb&w=700"
+  },
+  {
+    "days": "3 Days",
+    "duration": "short",
+    "name": "03 Days South Coast Escape",
+    "route": "Galle \u2022 Unawatuna \u2022 Mirissa \u2022 Yala",
+    "desc": "A short private tour from the south coast \u2014 beaches, Galle Fort and an optional safari.",
+    "transport": "Car / Van / Tuk Tuk",
+    "img": "https://images.pexels.com/photos/27669312/pexels-photo-27669312.jpeg?cs=srgb&w=700"
+  },
+  {
+    "days": "Flexible",
+    "duration": "custom",
+    "name": "Custom Sri Lanka Tour",
+    "route": "You choose the route",
+    "desc": "Tell us your dates, places and travel style. We'll build a private itinerary around your group.",
+    "transport": "Car \u2022 Van \u2022 Bus \u2022 Tuk Tuk",
+    "img": "https://images.pexels.com/photos/35577991/pexels-photo-35577991.jpeg?cs=srgb&w=700"
+  }
+];
+
+function tryLogin(){
+  const val = document.getElementById('pwInput').value;
+  if(val === PASSWORD){
+    sessionStorage.setItem('galleAdminAuth','1');
+    showApp();
+  } else {
+    document.getElementById('loginErr').textContent = 'Incorrect password.';
+  }
+}
+function logout(){
+  sessionStorage.removeItem('galleAdminAuth');
+  location.reload();
+}
+function showApp(){
+  document.getElementById('loginGate').style.display = 'none';
+  document.getElementById('adminApp').style.display = 'block';
+  renderBikes();
+  renderTours();
+}
+if(sessionStorage.getItem('galleAdminAuth') === '1'){
+  window.addEventListener('DOMContentLoaded', showApp);
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.tabbtn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+function flashSaved(){
+  const b = document.getElementById('saveBanner');
+  b.style.display = 'block';
+  setTimeout(()=> b.style.display='none', 3000);
+}
+
+/* ---------- BIKES ---------- */
+let fleet = [];
+function loadBikeData(){
+  try{
+    const saved = localStorage.getItem(BIKE_KEY);
+    return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(FLEET_DEFAULT));
+  }catch(e){ return JSON.parse(JSON.stringify(FLEET_DEFAULT)); }
+}
+function saveBikeData(){
+  localStorage.setItem(BIKE_KEY, JSON.stringify(fleet));
+  flashSaved();
+}
+function renderBikes(){
+  fleet = loadBikeData();
+  document.getElementById('bikeCount').textContent = fleet.length;
+  const grid = document.getElementById('bikeGrid');
+  grid.innerHTML = fleet.map((b, i) => `
+    <div class="item-card">
+      <div class="thumb"><img src="${b.img}" id="bthumb-${i}"></div>
+      <div class="fields">
+        <label>Vehicle name</label>
+        <input value="${escapeHtml(b.name)}" oninput="updateBikeField(${i},'name',this.value)">
+        <div class="row2">
+          <div><label>Price / day ($)</label><input type="number" value="${b.price}" oninput="updateBikeField(${i},'price',this.value)"></div>
+          <div><label>Type</label>
+            <select onchange="updateBikeField(${i},'type',this.value)">
+              ${['Bike','Tuk Tuk','Car'].map(t=>`<option ${t===b.type?'selected':''}>${t}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <label>Subtitle (brand / note)</label>
+        <input value="${escapeHtml(b.sub)}" oninput="updateBikeField(${i},'sub',this.value)">
+        <label>Transmission</label>
+        <select onchange="updateBikeField(${i},'chips',[this.value, fleet[${i}].chips[1]||'Petrol'])">
+          ${['Automatic','Manual'].map(t=>`<option ${b.chips[0]===t?'selected':''}>${t}</option>`).join('')}
+        </select>
+        <label style="margin-top:10px;">Photo</label>
+        <label class="file-btn">Choose photo…<input type="file" accept="image/*" style="display:none" onchange="replaceBikePhoto(${i}, event)"></label>
+        <div class="avail-row">
+          <span>${b.available !== false ? 'Available' : 'Booked / Unavailable'}</span>
+          <label class="switch">
+            <input type="checkbox" ${b.available !== false ? 'checked' : ''} onchange="toggleBikeAvailability(${i},this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="card-actions"><button class="btn btn-danger" onclick="deleteBike(${i})">Delete</button></div>
+      </div>
+    </div>
+  `).join('') + `<div class="add-card" onclick="addBike()"><div class="plus">+</div><div>Add a new vehicle</div></div>`;
+}
+function updateBikeField(i, key, val){
+  fleet[i][key] = (key==='price') ? Number(val) : val;
+  saveBikeData();
+}
+function toggleBikeAvailability(i, checked){
+  fleet[i].available = checked;
+  saveBikeData();
+  renderBikes();
+}
+function replaceBikePhoto(i, event){
+  resizeAndEncode(event, function(dataUrl){
+    fleet[i].img = dataUrl;
+    document.getElementById('bthumb-'+i).src = dataUrl;
+    saveBikeData();
+  });
+}
+function deleteBike(i){
+  if(!confirm('Remove "' + fleet[i].name + '" from the fleet?')) return;
+  fleet.splice(i,1);
+  saveBikeData();
+  renderBikes();
+}
+function addBike(){
+  fleet.push({name:"New Vehicle",price:10,priceprefix:"$",sub:"",type:"Bike",chips:["Automatic","Petrol"],img:"https://images.pexels.com/photos/2611687/pexels-photo-2611687.jpeg?cs=srgb&w=700"});
+  saveBikeData();
+  renderBikes();
+}
+
+/* ---------- TOURS ---------- */
+let tours = [];
+function loadTourData(){
+  try{
+    const saved = localStorage.getItem(TOUR_KEY);
+    return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(TOURS_DEFAULT));
+  }catch(e){ return JSON.parse(JSON.stringify(TOURS_DEFAULT)); }
+}
+function saveTourData(){
+  localStorage.setItem(TOUR_KEY, JSON.stringify(tours));
+  flashSaved();
+}
+function renderTours(){
+  tours = loadTourData();
+  document.getElementById('tourCount').textContent = tours.length;
+  const grid = document.getElementById('tourGrid');
+  grid.innerHTML = tours.map((t, i) => `
+    <div class="item-card">
+      <div class="thumb"><img src="${t.img}" id="tthumb-${i}"></div>
+      <div class="fields">
+        <label>Tour name</label>
+        <input value="${escapeHtml(t.name)}" oninput="updateTourField(${i},'name',this.value)">
+        <div class="row2">
+          <div><label>Days label</label><input value="${escapeHtml(t.days)}" oninput="updateTourField(${i},'days',this.value)" placeholder="e.g. 7 Days"></div>
+          <div><label>Category</label>
+            <select onchange="updateTourField(${i},'duration',this.value)">
+              ${['short','long','custom'].map(d=>`<option value="${d}" ${d===t.duration?'selected':''}>${d}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <label>Route</label>
+        <input value="${escapeHtml(t.route)}" oninput="updateTourField(${i},'route',this.value)" placeholder="Place • Place • Place">
+        <label>Description</label>
+        <textarea oninput="updateTourField(${i},'desc',this.value)">${escapeHtml(t.desc)}</textarea>
+        <label>Transport</label>
+        <input value="${escapeHtml(t.transport)}" oninput="updateTourField(${i},'transport',this.value)">
+        <label style="margin-top:10px;">Photo</label>
+        <label class="file-btn">Choose photo…<input type="file" accept="image/*" style="display:none" onchange="replaceTourPhoto(${i}, event)"></label>
+        <div class="card-actions"><button class="btn btn-danger" onclick="deleteTour(${i})">Delete</button></div>
+      </div>
+    </div>
+  `).join('') + `<div class="add-card" onclick="addTour()"><div class="plus">+</div><div>Add a new tour</div></div>`;
+}
+function updateTourField(i, key, val){
+  tours[i][key] = val;
+  saveTourData();
+}
+function replaceTourPhoto(i, event){
+  resizeAndEncode(event, function(dataUrl){
+    tours[i].img = dataUrl;
+    document.getElementById('tthumb-'+i).src = dataUrl;
+    saveTourData();
+  });
+}
+function deleteTour(i){
+  if(!confirm('Remove "' + tours[i].name + '" from Round Tours?')) return;
+  tours.splice(i,1);
+  saveTourData();
+  renderTours();
+}
+function addTour(){
+  tours.push({days:"New",duration:"short",name:"New Tour",route:"Place • Place",desc:"Describe this tour.",transport:"Car / Van",img:"https://images.pexels.com/photos/19808398/pexels-photo-19808398.jpeg?cs=srgb&w=700"});
+  saveTourData();
+  renderTours();
+}
+
+/* ---------- shared helpers ---------- */
+function escapeHtml(s){ return (s||'').replace(/"/g,'&quot;'); }
+
+function resizeAndEncode(event, callback){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const maxW = 700;
+      const scale = Math.min(1, maxW / img.width);
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      callback(canvas.toDataURL('image/jpeg', 0.82));
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function exportData(kind){
+  const data = kind === 'bikes' ? fleet : tours;
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = kind === 'bikes' ? 'galle-fleet-backup.json' : 'galle-tours-backup.json';
+  a.click();
+}
+function importData(event, kind){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const data = JSON.parse(e.target.result);
+      if(kind === 'bikes'){ fleet = data; saveBikeData(); renderBikes(); }
+      else { tours = data; saveTourData(); renderTours(); }
+    }catch(err){
+      alert('Could not read that file — make sure it is a valid export from this admin panel.');
+    }
+  };
+  reader.readAsText(file);
+}
+function resetDefaults(kind){
+  if(kind === 'bikes'){
+    if(!confirm('Reset the fleet back to the original vehicles? This will discard your edits.')) return;
+    fleet = JSON.parse(JSON.stringify(FLEET_DEFAULT));
+    saveBikeData(); renderBikes();
+  } else {
+    if(!confirm('Reset tours back to the original 6? This will discard your edits.')) return;
+    tours = JSON.parse(JSON.stringify(TOURS_DEFAULT));
+    saveTourData(); renderTours();
+  }
+}
+</script>
+</body>
+</html>
