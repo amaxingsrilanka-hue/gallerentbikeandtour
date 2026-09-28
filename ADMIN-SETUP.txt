@@ -1,0 +1,11 @@
+ADMIN CMS SETUP
+
+1. Upload all files to your GitHub repository, including admin.html and site-data.json.
+2. Open /admin.html on your GitHub Pages site.
+3. Password: galletours123
+4. Open GitHub Publishing and enter the repository owner, repository, branch and a GitHub fine-grained token with Contents read/write permission for THIS repository only.
+5. The token is stored only in sessionStorage in this browser. Never share it.
+6. Use Homepage Images to upload a new main image or other hero image. Use Attraction Gallery for Yala, Udawalawe, Mirissa, Galle Fort, Unawatuna, Ella and Sigiriya.
+7. Changes are committed to GitHub and GitHub Pages redeploys automatically.
+
+IMPORTANT: GitHub Pages is static. The admin panel cannot safely write to your repository without an authenticated GitHub API token. This CMS therefore asks for your token at runtime rather than embedding a token in the website.

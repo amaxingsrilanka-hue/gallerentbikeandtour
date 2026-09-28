@@ -1,0 +1,38 @@
+{
+  "heroImage": "media/hero-main.jpg",
+  "heroImage2": "media/hero-second.jpg",
+  "reviewsBackground": "media/reviews.jpg",
+  "attractions": [
+    {
+      "key": "yala",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Srilankan_leopard_in_Yala_National_Park.jpg/1280px-Srilankan_leopard_in_Yala_National_Park.jpg"
+    },
+    {
+      "key": "udawalawe",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Udawalawa_National_Park_Wild_Elephant.jpg/1280px-Udawalawa_National_Park_Wild_Elephant.jpg"
+    },
+    {
+      "key": "mirissa",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Whale_watching_in_Mirissa.jpg/1280px-Whale_watching_in_Mirissa.jpg"
+    },
+    {
+      "key": "galle-fort",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/GALLE_FORT.jpg/1280px-GALLE_FORT.jpg"
+    },
+    {
+      "key": "unawatuna",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Unawatuna_beach.jpg/1280px-Unawatuna_beach.jpg"
+    },
+    {
+      "key": "ella",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Nine_Arches_Bridge_in_Ella.jpg/1280px-Nine_Arches_Bridge_in_Ella.jpg"
+    },
+    {
+      "key": "sigiriya",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Sigiriya_Sri_lanka.jpg/1280px-Sigiriya_Sri_lanka.jpg"
+    }
+  ],
+  "whatsapp": "+94776790722",
+  "heroTitle": "Explore Sri Lanka Your Way",
+  "heroSubtitle": "Scooters, tuk-tuks, cars, tours and unforgettable journeys from Galle."
+}
