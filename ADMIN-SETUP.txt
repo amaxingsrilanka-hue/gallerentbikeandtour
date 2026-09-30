@@ -1,11 +1,65 @@
-ADMIN CMS SETUP
+GALLE RENT BIKE & TOURS — ADVANCED ADMIN CMS
 
-1. Upload all files to your GitHub repository, including admin.html and site-data.json.
-2. Open /admin.html on your GitHub Pages site.
-3. Password: galletours123
-4. Open GitHub Publishing and enter the repository owner, repository, branch and a GitHub fine-grained token with Contents read/write permission for THIS repository only.
-5. The token is stored only in sessionStorage in this browser. Never share it.
-6. Use Homepage Images to upload a new main image or other hero image. Use Attraction Gallery for Yala, Udawalawe, Mirissa, Galle Fort, Unawatuna, Ella and Sigiriya.
-7. Changes are committed to GitHub and GitHub Pages redeploys automatically.
+What this version fixes
+-----------------------
+- Vehicle manager now supports adding NEW bikes, tuk tuks and cars.
+- Upload one or many real vehicle photos.
+- First vehicle photo becomes the main card photo.
+- Edit vehicle name, type, price, subtitle and features.
+- Mark vehicles Available / Booked from the admin panel.
+- Delete vehicles from the website.
+- Tour manager lets you add/edit/delete tour cards and upload tour photos.
+- Photo Library lets you upload general images into media/.
+- Homepage image manager for the hero photos and reviews background.
+- Central site-data.json is used by the public pages so changes can appear on GitHub Pages.
+- Images are compressed in the browser before upload.
+- Backup button downloads the current site-data.json.
 
-IMPORTANT: GitHub Pages is static. The admin panel cannot safely write to your repository without an authenticated GitHub API token. This CMS therefore asks for your token at runtime rather than embedding a token in the website.
+Files to upload
+---------------
+Upload/replace ALL files from this ZIP in the repository root, including the media/ folder.
+
+GitHub Pages site
+-----------------
+https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/
+
+Admin panel
+-----------
+https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/admin.html
+
+Admin password
+--------------
+galletours123
+
+GitHub publishing setup
+-----------------------
+1. Open admin.html.
+2. Enter the admin password.
+3. Open GitHub Publishing.
+4. Owner: amaxingsrilanka-hue
+5. Repository: gallerentbikeandtour
+6. Branch: main
+7. Enter your own GitHub fine-grained personal access token with Contents read/write permission for this repository.
+8. Click Save settings, then Test connection.
+9. Use Bikes & Tuk Tuks to add your real bike/tuk-tuk photos.
+
+SECURITY
+--------
+Never put your GitHub token into HTML/JavaScript files.
+Never send your token to anyone, including in chat.
+This panel keeps the token only in sessionStorage in the current browser session.
+The admin password is a client-side convenience password, not strong server-side authentication. GitHub token permissions are the real protection for publishing.
+
+How to add a bike or tuk tuk
+----------------------------
+1. Admin → Bikes & Tuk Tuks.
+2. Click Add vehicle.
+3. Enter name, type, price and features.
+4. Click Add photos and select your real vehicle photos.
+5. The first photo is the main card image.
+6. Click Save vehicle & publish.
+7. Wait for GitHub Pages to redeploy, then refresh the public website.
+
+If a photo does not appear immediately
+--------------------------------------
+GitHub Pages may take a short time to rebuild. Hard-refresh the website after the deployment completes.

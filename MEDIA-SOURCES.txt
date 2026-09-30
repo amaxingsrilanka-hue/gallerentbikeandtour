@@ -1,16 +1,6 @@
-External media used in the visual refresh:
+MEDIA NOTES
 
-Yala photo: image result from Tharu Tours Sri Lanka — https://tharutourssrilanka.com/packages/udawalawa-yala-safari
-Udawalawe photo: image result from Klook — https://www.klook.com/en-IN/activity/17335-udawalawe-national-park-safari-mirissa/
-Mirissa whale-watching photo: SoulTrips — https://www.soultrips.co/package/sri-lanka-whale-watching-yala-tour-from-3d2n
-Videos are embedded from YouTube creators and are not downloaded or republished by this website.
+The media/ folder contains the current vehicle and homepage images used as initial defaults.
+You can replace/add photos from the Advanced Admin panel.
 
-
-NEW ATTRACTION IMAGES — Wikimedia Commons (CC BY-SA 4.0 where stated)
-Yala leopard: https://commons.wikimedia.org/wiki/File:Srilankan_leopard_in_Yala_National_Park.jpg — AdrianRanasinghe — CC BY-SA 4.0
-Udawalawe elephant: https://commons.wikimedia.org/wiki/File:Udawalawa_National_Park_Wild_Elephant.jpg — Hasala Abhilasha — CC BY-SA 4.0
-Mirissa whale watching: https://commons.wikimedia.org/wiki/File:Whale_watching_in_Mirissa.jpg — DammikaD — CC BY-SA 4.0
-Ella Nine Arch Bridge: https://commons.wikimedia.org/wiki/File:Nine_Arches_Bridge_in_Ella.jpg — Wikimedia Commons file page; license as shown there.
-Unawatuna Beach: https://commons.wikimedia.org/wiki/File:Unawatuna_beach.jpg — Wikimedia Commons file page; CC BY-SA 4.0.
-Galle Fort: https://commons.wikimedia.org/wiki/File:GALLE_FORT.jpg — Vimukthi SL — CC BY-SA 4.0.
-Sigiriya: https://commons.wikimedia.org/wiki/File:Sigiriya_Sri_lanka.jpg — Wikimedia Commons file page; license as shown there.
+For photos you add yourself, make sure you have permission to use them on your website.

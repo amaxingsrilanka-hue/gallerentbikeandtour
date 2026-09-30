@@ -863,10 +863,7 @@ const TOURS_DEFAULT = [
 ];
 
 function loadTours(){
-  try{
-    const saved = localStorage.getItem('galleToursData');
-    return saved ? JSON.parse(saved) : TOURS_DEFAULT;
-  }catch(e){ return TOURS_DEFAULT; }
+  try{ return Array.isArray(window.GALLE_TOURS) ? window.GALLE_TOURS : TOURS_DEFAULT; }catch(e){ return TOURS_DEFAULT; }
 }
 
 let tourFilter = 'all';
@@ -1159,10 +1156,7 @@ const FLEET_DEFAULT = [
 ];
 
 function loadFleet(){
-  try{
-    const saved = localStorage.getItem('galleFleetData');
-    return saved ? JSON.parse(saved) : FLEET_DEFAULT;
-  }catch(e){ return FLEET_DEFAULT; }
+  try{ return Array.isArray(window.GALLE_FLEET) ? window.GALLE_FLEET : FLEET_DEFAULT; }catch(e){ return FLEET_DEFAULT; }
 }
 
 let fleetFilter = 'all';
@@ -1373,5 +1367,27 @@ if(d.reviewsBackground)set('[data-site-image="reviews"]',resolve(d.reviewsBackgr
 if(d.heroTitle){const e=document.querySelector('[data-site-text="hero-title"]');if(e)e.textContent=d.heroTitle}
 if(d.heroSubtitle){const e=document.querySelector('[data-site-text="hero-subtitle"]');if(e)e.textContent=d.heroSubtitle}
 }catch(e){console.warn('Site content loader:',e)}})();
-</script></body>
+</script><script>
+/* Central CMS data: the admin panel publishes site-data.json to GitHub Pages. */
+(function(){
+  const DATA_URL='site-data.json?v='+Date.now();
+  fetch(DATA_URL,{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
+    window.GALLE_SITE_DATA=d||{};
+    if(Array.isArray(d.fleet)) window.GALLE_FLEET=d.fleet;
+    if(Array.isArray(d.tours)) window.GALLE_TOURS=d.tours;
+    if(typeof renderFleet==='function') renderFleet();
+    if(typeof renderTours==='function') renderTours();
+    // Apply homepage settings without disturbing the original design.
+    const hero=document.querySelector('.hero h1');
+    const lead=document.querySelector('.hero p.lead');
+    if(hero && d.heroTitle) hero.textContent=d.heroTitle;
+    if(lead && d.heroSubtitle) lead.textContent=d.heroSubtitle;
+    const heroImgs=document.querySelectorAll('.hero-photo-frame img');
+    if(heroImgs[0] && d.heroImage) heroImgs[0].src=d.heroImage;
+    const hero2=document.querySelector('.hero-photo-frame-2 img');
+    if(hero2 && d.heroImage2) hero2.src=d.heroImage2;
+  }).catch(()=>{});
+})();
+</script>
+</body>
 </html>

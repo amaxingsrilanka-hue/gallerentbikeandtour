@@ -1,35 +1,407 @@
 {
-  "heroImage": "media/hero-main.jpg",
-  "heroImage2": "media/hero-second.jpg",
+  "version": 3,
+  "heroImage": "media/hero-main.jpeg",
+  "heroImage2": "media/hero2-main.jpeg",
   "reviewsBackground": "media/reviews.jpg",
   "attractions": [
     {
       "key": "yala",
+      "title": "Yala National Park",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Srilankan_leopard_in_Yala_National_Park.jpg/1280px-Srilankan_leopard_in_Yala_National_Park.jpg"
     },
     {
       "key": "udawalawe",
+      "title": "Udawalawe National Park",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Udawalawa_National_Park_Wild_Elephant.jpg/1280px-Udawalawa_National_Park_Wild_Elephant.jpg"
     },
     {
       "key": "mirissa",
+      "title": "Mirissa Whale Watching",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Whale_watching_in_Mirissa.jpg/1280px-Whale_watching_in_Mirissa.jpg"
     },
     {
       "key": "galle-fort",
+      "title": "Galle Fort",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/GALLE_FORT.jpg/1280px-GALLE_FORT.jpg"
     },
     {
       "key": "unawatuna",
+      "title": "Unawatuna Beach",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Unawatuna_beach.jpg/1280px-Unawatuna_beach.jpg"
     },
     {
       "key": "ella",
+      "title": "Ella / Nine Arches Bridge",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Nine_Arches_Bridge_in_Ella.jpg/1280px-Nine_Arches_Bridge_in_Ella.jpg"
     },
     {
       "key": "sigiriya",
+      "title": "Sigiriya",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Sigiriya_Sri_lanka.jpg/1280px-Sigiriya_Sri_lanka.jpg"
+    }
+  ],
+  "fleet": [
+    {
+      "name": "Honda Dio 110",
+      "price": 5,
+      "priceprefix": "$",
+      "sub": "Honda",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-honda-dio-110.jpeg",
+      "id": "honda-dio-110",
+      "photos": [
+        "media/fleet-honda-dio-110.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Honda PCX 160",
+      "price": 12,
+      "priceprefix": "$",
+      "sub": "Honda",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-honda-pcx-160.jpeg",
+      "id": "honda-pcx-160",
+      "photos": [
+        "media/fleet-honda-pcx-160.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Yamaha NMAX 155",
+      "price": 10,
+      "priceprefix": "$",
+      "sub": "Yamaha",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-yamaha-nmax-155.jpeg",
+      "id": "yamaha-nmax-155",
+      "photos": [
+        "media/fleet-yamaha-nmax-155.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Suzuki Burgman",
+      "price": 8,
+      "priceprefix": "$",
+      "sub": "Suzuki",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-suzuki-burgman.jpeg",
+      "id": "suzuki-burgman",
+      "photos": [
+        "media/fleet-suzuki-burgman.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Honda ADV 160",
+      "price": 12,
+      "priceprefix": "$",
+      "sub": "Honda",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-honda-adv-160.jpeg",
+      "id": "honda-adv-160",
+      "photos": [
+        "media/fleet-honda-adv-160.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Yamaha MT-15",
+      "price": 10,
+      "priceprefix": "$",
+      "sub": "Yamaha",
+      "type": "Bike",
+      "chips": [
+        "Manual",
+        "Petrol"
+      ],
+      "img": "media/fleet-yamaha-mt-15.jpeg",
+      "id": "yamaha-mt-15",
+      "photos": [
+        "media/fleet-yamaha-mt-15.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Honda Navi",
+      "price": 6,
+      "priceprefix": "$",
+      "sub": "Honda",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-honda-navi.jpeg",
+      "id": "honda-navi",
+      "photos": [
+        "media/fleet-honda-navi.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Honda Grazia",
+      "price": 6,
+      "priceprefix": "$",
+      "sub": "Honda",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-honda-grazia.jpeg",
+      "id": "honda-grazia",
+      "photos": [
+        "media/fleet-honda-grazia.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "TVS Ntorq 125",
+      "price": 6,
+      "priceprefix": "$",
+      "sub": "TVS",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-tvs-ntorq-125.jpeg",
+      "id": "tvs-ntorq-125",
+      "photos": [
+        "media/fleet-tvs-ntorq-125.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Yamaha Aerox 155",
+      "price": 10,
+      "priceprefix": "$",
+      "sub": "Yamaha",
+      "type": "Bike",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "media/fleet-yamaha-aerox-155.jpeg",
+      "id": "yamaha-aerox-155",
+      "photos": [
+        "media/fleet-yamaha-aerox-155.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Suzuki Intruder 150",
+      "price": 8,
+      "priceprefix": "$",
+      "sub": "Suzuki",
+      "type": "Bike",
+      "chips": [
+        "Manual",
+        "Petrol"
+      ],
+      "img": "media/fleet-suzuki-intruder-150.jpeg",
+      "id": "suzuki-intruder-150",
+      "photos": [
+        "media/fleet-suzuki-intruder-150.jpeg"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Tuk Tuk (Petrol)",
+      "price": 15,
+      "priceprefix": "$",
+      "sub": "Self-drive, with a short intro included.",
+      "type": "Tuk Tuk",
+      "chips": [
+        "Manual",
+        "Petrol"
+      ],
+      "img": "https://images.pexels.com/photos/10590491/pexels-photo-10590491.jpeg?cs=srgb&w=700",
+      "id": "tuk-tuk-petrol",
+      "photos": [
+        "https://images.pexels.com/photos/10590491/pexels-photo-10590491.jpeg?cs=srgb&w=700"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Electric Tuk Tuk",
+      "price": 18,
+      "priceprefix": "$",
+      "sub": "Quiet, easy to drive, no fuel stops.",
+      "type": "Tuk Tuk",
+      "chips": [
+        "Automatic",
+        "Electric"
+      ],
+      "img": "https://images.pexels.com/photos/30441419/pexels-photo-30441419.jpeg?cs=srgb&w=700",
+      "id": "electric-tuk-tuk",
+      "photos": [
+        "https://images.pexels.com/photos/30441419/pexels-photo-30441419.jpeg?cs=srgb&w=700"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "New Tuk Tuk",
+      "price": 20,
+      "priceprefix": "$",
+      "sub": "Latest model, lowest mileage in the fleet.",
+      "type": "Tuk Tuk",
+      "chips": [
+        "Manual",
+        "Petrol"
+      ],
+      "img": "https://images.pexels.com/photos/36241794/pexels-photo-36241794.jpeg?cs=srgb&w=700",
+      "id": "new-tuk-tuk",
+      "photos": [
+        "https://images.pexels.com/photos/36241794/pexels-photo-36241794.jpeg?cs=srgb&w=700"
+      ],
+      "available": true,
+      "featured": false
+    },
+    {
+      "name": "Car",
+      "price": 35,
+      "priceprefix": "from $",
+      "sub": "Depends on model — ask us what's free.",
+      "type": "Car",
+      "chips": [
+        "Automatic",
+        "Petrol"
+      ],
+      "img": "https://images.pexels.com/photos/68624/pexels-photo-68624.jpeg?cs=srgb&w=700",
+      "id": "car",
+      "photos": [
+        "https://images.pexels.com/photos/68624/pexels-photo-68624.jpeg?cs=srgb&w=700"
+      ],
+      "available": true,
+      "featured": false
+    }
+  ],
+  "tours": [
+    {
+      "days": "7 Days",
+      "duration": "long",
+      "name": "07 Days Classic Sri Lanka",
+      "route": "Sigiriya • Kandy • Ella • Yala • Galle",
+      "desc": "A balanced first-trip route covering ancient heritage, hill country, wildlife and the south coast.",
+      "transport": "Car / Van + Driver",
+      "img": "https://images.pexels.com/photos/19808398/pexels-photo-19808398.jpeg?cs=srgb&w=700",
+      "id": "07-days-classic-sri-lanka"
+    },
+    {
+      "days": "10 Days",
+      "duration": "long",
+      "name": "10 Days Grand Island Tour",
+      "route": "Sigiriya • Kandy • Nuwara Eliya • Ella • Yala • Mirissa • Galle",
+      "desc": "Our most complete classic circuit — culture, tea country, waterfalls, safari and beach time.",
+      "transport": "Car / Van + Driver-Guide",
+      "img": "https://images.pexels.com/photos/12147639/pexels-photo-12147639.jpeg?cs=srgb&w=700",
+      "id": "10-days-grand-island-tour"
+    },
+    {
+      "days": "5 Days",
+      "duration": "short",
+      "name": "05 Days Hill Country & South",
+      "route": "Kandy • Nuwara Eliya • Ella • Yala • Galle",
+      "desc": "Mountains, tea plantations, scenic views, wildlife and the southern coast in one trip.",
+      "transport": "Car / Van + Driver",
+      "img": "https://images.pexels.com/photos/8692695/pexels-photo-8692695.jpeg?cs=srgb&w=700",
+      "id": "05-days-hill-country-south"
+    },
+    {
+      "days": "4 Days",
+      "duration": "short",
+      "name": "04 Days Cultural Triangle",
+      "route": "Dambulla • Sigiriya • Polonnaruwa • Kandy",
+      "desc": "A focused heritage tour through Sri Lanka's ancient cities and cultural highlights.",
+      "transport": "Car / Van + Guide",
+      "img": "https://images.pexels.com/photos/14041994/pexels-photo-14041994.jpeg?cs=srgb&w=700",
+      "id": "04-days-cultural-triangle"
+    },
+    {
+      "days": "3 Days",
+      "duration": "short",
+      "name": "03 Days South Coast Escape",
+      "route": "Galle • Unawatuna • Mirissa • Yala",
+      "desc": "A short private tour from the south coast — beaches, Galle Fort and an optional safari.",
+      "transport": "Car / Van / Tuk Tuk",
+      "img": "https://images.pexels.com/photos/27669312/pexels-photo-27669312.jpeg?cs=srgb&w=700",
+      "id": "03-days-south-coast-escape"
+    },
+    {
+      "days": "1 Day",
+      "duration": "short",
+      "name": "Yala Wildlife Safari",
+      "route": "Galle / Unawatuna • Yala National Park",
+      "desc": "A wildlife day trip from the south coast with safari arrangements and flexible pickup.",
+      "transport": "Car + Safari Jeep",
+      "img": "https://tharutourssrilanka.com/assets/safari-yala-leopard-DRBEmXnM.jpg",
+      "id": "yala-wildlife-safari"
+    },
+    {
+      "days": "1 Day",
+      "duration": "short",
+      "name": "Udawalawe Elephant Safari",
+      "route": "Galle / Unawatuna • Udawalawe",
+      "desc": "A full-day wildlife escape focused on Udawalawe and its famous elephant country.",
+      "transport": "Car + Safari Jeep",
+      "img": "https://imperiyaturizma24.com/upload/medialibrary/01f/spw3jfd233qiqld9p9xpfzm4rmr9hji1.jpg",
+      "id": "udawalawe-elephant-safari"
+    },
+    {
+      "days": "1 Day",
+      "duration": "short",
+      "name": "Mirissa Whale Watching",
+      "route": "Galle • Weligama • Mirissa",
+      "desc": "An early-morning ocean experience with whale and dolphin watching from Mirissa.",
+      "transport": "Car / Van + Boat",
+      "img": "https://www.soultrips.co/media/2068/set-sail-from-mirissa-for-an-exciting-whale-watching-expedition.jpg?height=700&mode=max&width=1200",
+      "id": "mirissa-whale-watching"
+    },
+    {
+      "days": "Flexible",
+      "duration": "custom",
+      "name": "Custom Sri Lanka Tour",
+      "route": "You choose the route",
+      "desc": "Tell us your dates, places and travel style. We'll build a private itinerary around your group.",
+      "transport": "Car • Van • Bus • Tuk Tuk",
+      "img": "https://images.pexels.com/photos/35577991/pexels-photo-35577991.jpeg?cs=srgb&w=700",
+      "id": "custom-sri-lanka-tour"
     }
   ],
   "whatsapp": "+94776790722",
