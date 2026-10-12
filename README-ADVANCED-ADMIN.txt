@@ -1,15 +1,5 @@
-Galle Rent Bike & Tours — Advanced Admin CMS
+This edition uses a travel-CMS style workflow: Dashboard -> Vehicles -> Tours -> Media Library -> Homepage -> Content -> SEO -> GitHub Connection.
 
-Admin URL:
-https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/admin.html
+The design is informed by common travel CMS patterns such as centralized media management, tour/package management and vehicle/fleet profiles. Examples researched for this rebuild include Jaabo's travel CMS modules, a Sri Lankan travel booking dashboard case study, and fleet media-library patterns.
 
-Password:
-galletours123
-
-Public website:
-https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/
-
-Main new feature:
-You can now add bikes and tuk tuks yourself, upload multiple photos, choose the main photo, edit prices/features, change availability, and publish directly to GitHub Pages.
-
-Read ADMIN-SETUP.txt before publishing.
+The site remains a static GitHub Pages website. A browser-only admin cannot safely write to a GitHub repository without authenticated GitHub API access, so the Connection page uses a user-supplied fine-grained token stored only in sessionStorage.

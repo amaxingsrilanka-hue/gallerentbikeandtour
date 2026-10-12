@@ -1,65 +1,17 @@
-GALLE RENT BIKE & TOURS — ADVANCED ADMIN CMS
+GALLE RENT BIKE & TOURS — SIMPLE PHOTO ADMIN PANEL
 
-What this version fixes
------------------------
-- Vehicle manager now supports adding NEW bikes, tuk tuks and cars.
-- Upload one or many real vehicle photos.
-- First vehicle photo becomes the main card photo.
-- Edit vehicle name, type, price, subtitle and features.
-- Mark vehicles Available / Booked from the admin panel.
-- Delete vehicles from the website.
-- Tour manager lets you add/edit/delete tour cards and upload tour photos.
-- Photo Library lets you upload general images into media/.
-- Homepage image manager for the hero photos and reviews background.
-- Central site-data.json is used by the public pages so changes can appear on GitHub Pages.
-- Images are compressed in the browser before upload.
-- Backup button downloads the current site-data.json.
+INSTALL
+1. Download and extract this ZIP.
+2. Upload/replace the files in the root of your GitHub repository (same place as index.html). Replace admin.html and keep the other site files.
+3. Open https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/admin.html
+4. There is no separate front-end password gate in this troubleshooting panel. GitHub repository permissions are what authorize uploads.
+5. Enter owner amaxingsrilanka-hue, repository gallerentbikeandtour, branch main.
+6. Paste a GitHub fine-grained personal access token that is limited to this repository and has Contents -> Read and write. Click Test connection.
+7. After a successful connection, use Upload Photos, Bikes & Tuk-tuks, or Homepage Photos.
 
-Files to upload
----------------
-Upload/replace ALL files from this ZIP in the repository root, including the media/ folder.
-
-GitHub Pages site
------------------
-https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/
-
-Admin panel
------------
-https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/admin.html
-
-Admin password
---------------
-galletours123
-
-GitHub publishing setup
------------------------
-1. Open admin.html.
-2. Enter the admin password.
-3. Open GitHub Publishing.
-4. Owner: amaxingsrilanka-hue
-5. Repository: gallerentbikeandtour
-6. Branch: main
-7. Enter your own GitHub fine-grained personal access token with Contents read/write permission for this repository.
-8. Click Save settings, then Test connection.
-9. Use Bikes & Tuk Tuks to add your real bike/tuk-tuk photos.
-
-SECURITY
---------
-Never put your GitHub token into HTML/JavaScript files.
-Never send your token to anyone, including in chat.
-This panel keeps the token only in sessionStorage in the current browser session.
-The admin password is a client-side convenience password, not strong server-side authentication. GitHub token permissions are the real protection for publishing.
-
-How to add a bike or tuk tuk
-----------------------------
-1. Admin → Bikes & Tuk Tuks.
-2. Click Add vehicle.
-3. Enter name, type, price and features.
-4. Click Add photos and select your real vehicle photos.
-5. The first photo is the main card image.
-6. Click Save vehicle & publish.
-7. Wait for GitHub Pages to redeploy, then refresh the public website.
-
-If a photo does not appear immediately
---------------------------------------
-GitHub Pages may take a short time to rebuild. Hard-refresh the website after the deployment completes.
+IMPORTANT
+- Never share your token in chat or commit it into website files.
+- The token is kept in sessionStorage for this browser session; owner/repo/branch preferences are stored in localStorage.
+- GitHub's Contents API requires Contents: write permission to upload files.
+- If Test connection fails, read the exact HTTP error in the status box. A 401 usually means invalid/expired token; 403 usually means missing permission; 404 usually means wrong repo/branch or token lacks repository access.
+- This panel saves uploaded photos to media/ and vehicle details to site-data.json. The public pages must read/render the fleet array to display new vehicles; this admin stores the fleet data, but an older public-page design may not automatically show a new fleet section.

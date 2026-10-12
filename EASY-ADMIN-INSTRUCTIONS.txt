@@ -1,0 +1,10 @@
+EASY ADMIN SETUP — GALLE RENT BIKE & TOURS
+
+1. Upload all files in this ZIP to the ROOT of your GitHub repository, replacing the existing files.
+2. Open https://amaxingsrilanka-hue.github.io/gallerentbikeandtour/admin.html
+3. In the admin panel, click “Load existing site-data.json” and select site-data.json from the extracted ZIP.
+4. Choose photos or add vehicles.
+5. Click “Download updated site-data.json”.
+6. Upload/replace that downloaded site-data.json in the root of your GitHub repository. Wait for Pages to update.
+
+NO GITHUB TOKEN REQUIRED. Since GitHub Pages is static hosting, the simple panel cannot publish directly. It prepares the updated data file, which you upload manually. Photos are compressed and stored as data URLs inside site-data.json, so the photo travels with that file. Keep photos reasonably small.
